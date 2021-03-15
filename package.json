@@ -1,0 +1,74 @@
+{
+  "name": "project_template_react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rehooks/local-storage": "^2.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.67",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.6",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "classnames": "^2.2.6",
+    "formik": "^2.2.1",
+    "generate-react-cli": "^5.1.0",
+    "node-sass": "^4.14.1",
+    "query-string": "^6.13.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-route-guard": "^1.0.7",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "reactstrap": "^8.6.0",
+    "typescript": "^3.7.5",
+    "use-debounce": "^5.0.1",
+    "yup": "^0.29.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "start:reset-cache": "npm start --reset-cache",
+    "generate:icons": "node scripts/generate-icons.js",
+    "generate:images": "node scripts/generate-images.js",
+    "generate:component": "npx generate-react-cli component",
+    "generate:page": "npx generate-react-cli component --type=page"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/node-sass": "^4.11.1",
+    "@types/reactstrap": "^8.5.1",
+    "@types/yup": "^0.29.9",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.21.5",
+    "prettier": "^2.2.1"
+  }
+}
