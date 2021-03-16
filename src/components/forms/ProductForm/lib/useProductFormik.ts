@@ -4,10 +4,12 @@ import React from "react"
 export const useProductFormik = (opts:any)=>{
   return useFormik({
     initialValues: {
+
       regular_price: '',
       images: "",
       name: '',
-      id: ''
+      id: '',
+      ...opts.initialValues
     },
     enableReinitialize:true,
     onSubmit:async(values, formikHelpers)=>{

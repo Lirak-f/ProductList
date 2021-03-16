@@ -14,8 +14,8 @@ export const Add = () => {
             ...values,
             images: [{ src: values.images }]
           }
-          const res = await API.add(apiValues)
-          console.log("res", res)
+          const res = await API.add(apiValues);
+          console.log("res",res);
           formikHelpers.resetForm()
         } catch (e) {
         }

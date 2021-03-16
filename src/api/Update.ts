@@ -1,5 +1,6 @@
 import { apiRequest } from "./Api"
 
+
 interface ImgObj{
   src:string
 }
@@ -13,8 +14,9 @@ interface ProductResponse {
   data: ProductInput[]
 }
 
-export const update = async (id: number) =>
-  apiRequest<ProductInput, ProductResponse>(
-    'post',
-    'products'+id
+export const update = async (id:number, data:ProductInput) =>
+  apiRequest<ProductInput>(
+    'put',
+    'products/'+id,
+    data
   );
