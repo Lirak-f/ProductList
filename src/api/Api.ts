@@ -20,6 +20,9 @@ export async function apiRequest<D = {}, R = unknown>(
   return res.data;
 }
 
+export * from './Update';
 export * from './User';
 export * from './Products';
-export * from './Add'
+export * from './Add';
+export * from './Delete';
+

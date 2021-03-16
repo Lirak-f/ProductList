@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { Route, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as API from '../../api/Api'
 import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
 import './ProductList.scss';
+import { EditProductForm } from '../EditProduct/EditProductForm';
+import {Spinner} from "reactstrap";
 
 export const ProductList = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const arr = Array.from({length:6})
-
   useEffect(() => {
     getData();
   }, []);
@@ -20,22 +20,30 @@ export const ProductList = () => {
     const res = await API.getProducts();
     console.log(res);
     setData(res);
+
     }catch(e){
       console.log("error",e)
     }
-    setLoading(false);
+
   }
 
-  function deleteProduct(id:any) {
+  async function deleteProduct(id:any) {
     console.log(id);
-    setData(data.filter((product:any)=>product.id !== id ))
-
+    // setData(data.filter((product:any)=>product.id !== id ));
+    try {
+      setLoading(true);
+      await API.deleteProduct(id);
+      setData(data.filter((product:any)=>product.id !== id
+      ))
+      setLoading(false);
+    }
+      catch (e){}
   }
 
   return (
     <>
-
       <Divider />
+
       <Card.Group doubling itemsPerRow={3} stackable>
         {data?.map((product:any,index)=>(
           <Card key={product.id}>
@@ -49,15 +57,7 @@ export const ProductList = () => {
 
             <Card.Content>
               {loading ? (
-                <Placeholder>
-                  <Placeholder.Header>
-                    <Placeholder.Line length='very short' />
-                    <Placeholder.Line length='medium' />
-                  </Placeholder.Header>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line length='short' />
-                  </Placeholder.Paragraph>
-                </Placeholder>
+                <Spinner color="primary"/>
               ) : (
                 <>
                   <Card.Header>{product.name}</Card.Header>
@@ -67,8 +67,12 @@ export const ProductList = () => {
             </Card.Content>
 
             <Card.Content extra>
-              <Button disabled={loading} primary>Edit</Button>
-              <Button disabled={loading} onClick={()=>deleteProduct(product.id)}>Delete</Button>
+              <Link to={`/products/${product.id}`}>
+                <Button disabled={loading} primary>Edit</Button>
+              </Link>
+              {loading?
+                <Button loading>Loading</Button>:
+                <Button disabled={loading} onClick={()=>deleteProduct(product.id)}>Delete</Button>}
             </Card.Content>
           </Card>
         ))}
