@@ -12,6 +12,9 @@ import { Profile } from '../pages/Profile/Profile';
 import { Home } from '../pages/Home/Home';
 import { Page404 } from '../pages/Page404/Page404';
 import { RestrictedRoute } from './RestrictedRoute';
+import { ProductList } from "../pages/ProductList/ProductList"
+import { Add } from "../pages/AddProduct/AddProduct"
+
 
 export enum RouteType {
   PUBLIC,
@@ -31,6 +34,18 @@ export const AppRoutes: AppRoute[] = [
   },
   {
     type: RouteType.RESTRICTED,
+    exact: true,
+    path: 'products',
+    component: ProductList,
+  },
+  {
+    type: RouteType.RESTRICTED,
+    exact: true,
+    path: 'product/add',
+    component: Add,
+  },
+  {
+    type: RouteType.PUBLIC,
     exact: true,
     path: 'register',
     component: Register,

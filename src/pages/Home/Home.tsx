@@ -7,8 +7,10 @@ import './Home.scss';
 export const Home = () => {
   return (
     <div className="Home">
-      <h1>Home component</h1>
-      <NavLink to="/login"> Go to Login</NavLink>
+      {/*<NavLink to="/products"> Product List</NavLink>*/}
+      {/*<NavLink to="/product/add"> Add </NavLink>*/}
+      {/*<NavLink to="/login"> Go to Login</NavLink>*/}
+      <h1>Home</h1>
     </div>
   );
 };

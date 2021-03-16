@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom"
 
 //styles
 import "./Header.scss";
@@ -7,8 +7,13 @@ import "./Header.scss";
 export const Header = () => {
   return (
     <div className="Header">
-      <Link to="/login">login</Link>
-      <Link to="/register">register</Link>
+
+      <div className="navbar">
+      <NavLink className="nav" to="/products"> Product list</NavLink>
+      <NavLink className="nav" to="/product/add"> Add </NavLink>
+      <NavLink className="nav" to="/login"> Login </NavLink>
+      <NavLink className="nav" to="/register"> Register </NavLink>
+      </div>
     </div>
   );
 };

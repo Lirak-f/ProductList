@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
 import * as serviceWorker from "./serviceWorker"
+import 'semantic-ui-css/semantic.min.css'
 /****
  * * IMPORTANT NOTE: Do not change _main.scss_ import order.
  * It needs to be imported before main App component
