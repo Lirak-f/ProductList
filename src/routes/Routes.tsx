@@ -14,6 +14,7 @@ import { Page404 } from '../pages/Page404/Page404';
 import { RestrictedRoute } from './RestrictedRoute';
 import { ProductList } from "../pages/ProductList/ProductList"
 import { Add } from "../pages/AddProduct/AddProduct"
+import {EditProductForm} from "../pages/EditProduct/EditProductForm"
 
 
 export enum RouteType {
@@ -37,6 +38,12 @@ export const AppRoutes: AppRoute[] = [
     exact: true,
     path: 'products',
     component: ProductList,
+  },
+  {
+    type: RouteType.RESTRICTED,
+    exact: true,
+    path: 'products/:id',
+    component: EditProductForm,
   },
   {
     type: RouteType.RESTRICTED,

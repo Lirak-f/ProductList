@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { Route, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as API from '../../api/Api'
 import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
 import './ProductList.scss';
-
+import { EditProductForm } from '../EditProduct/EditProductForm';
+import {Spinner} from "reactstrap";
 
 export const ProductList = () => {
   const [data, setData] = useState([]);
@@ -19,10 +20,11 @@ export const ProductList = () => {
     const res = await API.getProducts();
     console.log(res);
     setData(res);
+
     }catch(e){
       console.log("error",e)
     }
-    setLoading(false);
+
   }
 
   async function deleteProduct(id:any) {
@@ -40,8 +42,8 @@ export const ProductList = () => {
 
   return (
     <>
-
       <Divider />
+
       <Card.Group doubling itemsPerRow={3} stackable>
         {data?.map((product:any,index)=>(
           <Card key={product.id}>
@@ -55,15 +57,7 @@ export const ProductList = () => {
 
             <Card.Content>
               {loading ? (
-                <Placeholder>
-                  <Placeholder.Header>
-                    <Placeholder.Line length='very short' />
-                    <Placeholder.Line length='medium' />
-                  </Placeholder.Header>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line length='short' />
-                  </Placeholder.Paragraph>
-                </Placeholder>
+                <Spinner color="primary"/>
               ) : (
                 <>
                   <Card.Header>{product.name}</Card.Header>
@@ -73,7 +67,9 @@ export const ProductList = () => {
             </Card.Content>
 
             <Card.Content extra>
-              <Button disabled={loading} primary>Edit</Button>
+              <Link to={`/products/${product.id}`}>
+                <Button disabled={loading} primary>Edit</Button>
+              </Link>
               {loading?
                 <Button loading>Loading</Button>:
                 <Button disabled={loading} onClick={()=>deleteProduct(product.id)}>Delete</Button>}
