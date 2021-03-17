@@ -1,34 +1,62 @@
 import React from "react";
+import { Button, Form, Segment } from 'semantic-ui-react';
 
 
 export const ProductForm = (props:any) => {
   const {formik} = props;
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">Product :</label>
-         <input
-          id="name"
-          name="name"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.name}
-        />
-        <label htmlFor="regular_price">Price :</label>
-        <input
-          id="regular_price"
-          name="regular_price"
-          onChange={formik.handleChange}
-          value={formik.values.regular_price}
-        />
-        <label htmlFor="images">Image Url :</label>
-        <input
-          id="images"
-          name="images"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.images}
-        />
-        <button type="submit">Submit</button>
-       </form>
+    <Segment inverted>
+      <Form inverted onSubmit={formik.handleSubmit}>
+        <Form.Group widths='equal'>
+          <label htmlFor="name">Product:</label>
+          <Form.Input
+            id="name"
+            name="name"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.name}/>
+          <label htmlFor="regular_price">Price:</label>
+          <Form.Input
+            id="regular_price"
+            name="regular_price"
+            onChange={formik.handleChange}
+            value={formik.values.regular_price}/>
+          <label htmlFor="images">Image Url:</label>
+          <Form.Input
+            id="images"
+            name="images"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.images}/>
+        </Form.Group>
+        <Button type='submit'>Submit</Button>
+      </Form>
+    </Segment>
+    // <form onSubmit={formik.handleSubmit}>
+    //   <label htmlFor="name">Product :</label>
+    //      <input
+    //       id="name"
+    //       name="name"
+    //       type="text"
+    //       onChange={formik.handleChange}
+    //       value={formik.values.name}
+    //     />
+    //     <label htmlFor="regular_price">Price :</label>
+    //     <input
+    //       id="regular_price"
+    //       name="regular_price"
+    //       onChange={formik.handleChange}
+    //       value={formik.values.regular_price}
+    //     />
+    //     <label htmlFor="images">Image Url :</label>
+    //     <input
+    //       id="images"
+    //       name="images"
+    //       type="text"
+    //       onChange={formik.handleChange}
+    //       value={formik.values.images}
+    //     />
+    //     <button type="submit">Submit</button>
+    //    </form>
   )
 }

@@ -6,6 +6,7 @@ import './ProductList.scss';
 import { EditProductForm } from '../EditProduct/EditProductForm';
 import {Spinner} from "reactstrap";
 
+
 export const ProductList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,9 +18,10 @@ export const ProductList = () => {
 
   async function getData() {
     try{
+    setLoading(true);
     const res = await API.getProducts();
-    console.log(res);
     setData(res);
+      setLoading(false);
 
     }catch(e){
       console.log("error",e)
@@ -28,22 +30,27 @@ export const ProductList = () => {
   }
 
   async function deleteProduct(id:any) {
-    console.log(id);
-    // setData(data.filter((product:any)=>product.id !== id ));
     try {
       setLoading(true);
       await API.deleteProduct(id);
+      setLoading(false);
       setData(data.filter((product:any)=>product.id !== id
       ))
-      setLoading(false);
+
     }
       catch (e){}
   }
 
   return (
+
     <>
       <Divider />
-
+      {loading ?
+        <Spinner
+          className="spinner"
+          color="primary"
+        />
+        : <div></div> }
       <Card.Group doubling itemsPerRow={3} stackable>
         {data?.map((product:any,index)=>(
           <Card key={product.id}>
@@ -67,6 +74,9 @@ export const ProductList = () => {
             </Card.Content>
 
             <Card.Content extra>
+              <Link to={`/products/show/${product.id}`}>
+                <Button disabled={loading} >Show</Button>
+              </Link>
               <Link to={`/products/${product.id}`}>
                 <Button disabled={loading} primary>Edit</Button>
               </Link>
