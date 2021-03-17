@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Form, Message, Segment, Icon } from "semantic-ui-react"
-import { Spinner } from "reactstrap"
-
+import { InputForm } from '../../../components/forms/InputForm/InputForm'
 
 export const ProductForm = (props:any) => {
   const {formik} = props;
@@ -10,26 +9,30 @@ export const ProductForm = (props:any) => {
     <Segment inverted  loading={props.loading}>
       <Form inverted onSubmit={formik.handleSubmit}>
         <Form.Group widths='equal'>
-          <label htmlFor="name">Product:</label>
-          <Form.Input
-            id="name"
+          <InputForm
+            id="product"
             name="name"
+            label="Product:"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.name}/>
-          <label htmlFor="regular_price">Price:</label>
-          <Form.Input
+            value={formik.values.name}
+          />
+          <InputForm
             id="regular_price"
             name="regular_price"
-            onChange={formik.handleChange}
-            value={formik.values.regular_price}/>
-          <label htmlFor="images">Image Url:</label>
-          <Form.Input
-            id="images"
-            name="images"
+            label="Price:"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.images}/>
+            value={formik.values.regular_price}
+          />
+          <InputForm
+            id="images"
+            name="images"
+            label="Image Url:"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.images}
+          />
         </Form.Group>
         <Form success>
           {props.message.check ?
