@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Message, Segment, Icon } from "semantic-ui-react"
+import { Button, Form, Message, Segment, Icon, Divider } from "semantic-ui-react"
 import { InputForm } from '../../../components/forms/InputForm/InputForm'
 
 export const ProductForm = (props:any) => {
@@ -8,7 +8,6 @@ export const ProductForm = (props:any) => {
     <>
     <Segment inverted  loading={props.loading}>
       <Form inverted onSubmit={formik.handleSubmit}>
-        <Form.Group widths='equal'>
           <InputForm
             id="product"
             name="name"
@@ -33,7 +32,7 @@ export const ProductForm = (props:any) => {
             onChange={formik.handleChange}
             value={formik.values.images}
           />
-        </Form.Group>
+          <Divider/>
         <Form success>
           {props.message.check ?
             <Message
@@ -43,7 +42,6 @@ export const ProductForm = (props:any) => {
             />:
             <div></div>
           }
-
           <Button>Submit</Button>
         </Form>
       </Form>

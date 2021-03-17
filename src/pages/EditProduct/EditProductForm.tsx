@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ProductForm } from "../../components/forms/ProductForm/ProductForm"
 import { useProductFormik } from '../../components/forms/ProductForm/lib/useProductFormik'
 import * as API from "../../api/Api";
-
+import './EditProductForm.scss'
 
 
 
@@ -66,7 +66,7 @@ export const EditProductForm = (props:any) => {
   setTimeout(()=>{setMessage({
     msg: "Product edited!" ,
     check: false
-  })},7500)
+  })},10000)
   return (
    <div className="editForm">
      <ProductForm
