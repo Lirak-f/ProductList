@@ -15,7 +15,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { ProductList } from "../pages/ProductList/ProductList"
 import { Add } from "../pages/AddProduct/AddProduct"
 import {EditProductForm} from "../pages/EditProduct/EditProductForm"
-
+import {ProductInfo} from "../pages/ProductInfo/ProductInfo"
 
 export enum RouteType {
   PUBLIC,
@@ -32,6 +32,12 @@ export const AppRoutes: AppRoute[] = [
     exact: true,
     path: 'login',
     component: Login,
+  },
+  {
+    type: RouteType.RESTRICTED,
+    exact: true,
+    path: 'products/show/:id',
+    component: ProductInfo,
   },
   {
     type: RouteType.RESTRICTED,

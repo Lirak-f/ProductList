@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as API from '../../api/Api'
 import { ProductForm } from "../../components/forms/ProductForm/ProductForm"
 import { useProductFormik } from '../../components/forms/ProductForm/lib/useProductFormik'
-
+import './AddProduct.scss'
 
 export const Add = () => {
 

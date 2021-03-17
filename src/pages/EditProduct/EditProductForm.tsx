@@ -36,7 +36,6 @@ export const EditProductForm = (props:any) => {
     }
   }
 
-
   const formik = useProductFormik({ initialValues: data,onSubmit: async (values:any, formikHelpers:any) => {
     try {
         const apiValues = {

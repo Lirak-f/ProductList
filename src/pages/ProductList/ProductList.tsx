@@ -74,6 +74,9 @@ export const ProductList = () => {
             </Card.Content>
 
             <Card.Content extra>
+              <Link to={`/products/show/${product.id}`}>
+                <Button disabled={loading} >Show</Button>
+              </Link>
               <Link to={`/products/${product.id}`}>
                 <Button disabled={loading} primary>Edit</Button>
               </Link>
