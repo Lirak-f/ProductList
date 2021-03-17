@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ProductForm } from "../../components/forms/ProductForm/ProductForm"
 import { useProductFormik } from '../../components/forms/ProductForm/lib/useProductFormik'
 import * as API from "../../api/Api";
-import { Spinner } from "reactstrap"
+
 
 
 
@@ -15,6 +15,11 @@ export const EditProductForm = (props:any) => {
   const productId = props.match.params.id;
   const [loading,setLoading]= useState(false);
   const [data, setData] = useState({});
+  const [message,setMessage] = useState({
+    msg:"Edit product",
+    check:false
+  });
+
   useEffect(() => {
     getData();
   }, []);
@@ -23,6 +28,7 @@ export const EditProductForm = (props:any) => {
     try{
       setLoading(true);
       const res = await API.getProduct(productId);
+
       setData({
         regular_price:res.regular_price,
         name: res.name,
@@ -44,7 +50,12 @@ export const EditProductForm = (props:any) => {
         }
         console.log(apiValues)
       setLoading(true);
+        setMessage({msg:'',check: true})
       const res = await API.update(apiValues.id,apiValues);
+      setMessage({
+        msg: "Product edited!" ,
+        check: true
+      })
         formikHelpers.resetForm()
       console.log(res)
       setLoading(false);
@@ -52,10 +63,17 @@ export const EditProductForm = (props:any) => {
       }
     },
   });
-
+  setTimeout(()=>{setMessage({
+    msg: "Product edited!" ,
+    check: false
+  })},7500)
   return (
    <div className="editForm">
-     {loading? <Spinner color="primary" />: <ProductForm formik={formik}/> }
+     <ProductForm
+       loading={loading}
+       message={message}
+       formik={formik}
+     />
    </div>
   )
 }

@@ -10,6 +10,7 @@ import {Spinner} from "reactstrap";
 export const ProductList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deleteCheck, setDeleteCheck] =useState('');
 
   const arr = Array.from({length:6})
   useEffect(() => {
@@ -28,21 +29,27 @@ export const ProductList = () => {
     }
 
   }
-
   async function deleteProduct(id:any) {
     try {
-      setLoading(true);
+      setDeleteCheck(id);
       await API.deleteProduct(id);
-      setLoading(false);
+
       setData(data.filter((product:any)=>product.id !== id
       ))
 
     }
       catch (e){}
   }
-
-  return (
-
+//   return (<div>
+//     {data?.map((product:any)=>{
+//       <ProductCard
+//         key={product.id}
+//       />
+//     })}
+//   </div>)
+//
+// };
+return (
     <>
       <Divider />
       {loading ?
@@ -80,7 +87,7 @@ export const ProductList = () => {
               <Link to={`/products/${product.id}`}>
                 <Button disabled={loading} primary>Edit</Button>
               </Link>
-              {loading?
+              {deleteCheck===product.id?
                 <Button loading>Loading</Button>:
                 <Button disabled={loading} onClick={()=>deleteProduct(product.id)}>Delete</Button>}
             </Card.Content>
@@ -88,5 +95,4 @@ export const ProductList = () => {
         ))}
       </Card.Group>
     </>
-  )
-};
+  )}

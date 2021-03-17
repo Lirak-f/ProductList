@@ -1,11 +1,13 @@
 import React from "react";
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, Form, Message, Segment, Icon } from "semantic-ui-react"
+import { Spinner } from "reactstrap"
 
 
 export const ProductForm = (props:any) => {
   const {formik} = props;
   return (
-    <Segment inverted>
+    <>
+    <Segment inverted  loading={props.loading}>
       <Form inverted onSubmit={formik.handleSubmit}>
         <Form.Group widths='equal'>
           <label htmlFor="name">Product:</label>
@@ -29,34 +31,59 @@ export const ProductForm = (props:any) => {
             onChange={formik.handleChange}
             value={formik.values.images}/>
         </Form.Group>
-        <Button type='submit'>Submit</Button>
+        <Form success>
+          {props.message.check ?
+            <Message
+              success
+              // header={props.message}
+              content={props.message.msg}
+            />:
+            <div></div>
+          }
+
+          <Button>Submit</Button>
+        </Form>
       </Form>
     </Segment>
-    // <form onSubmit={formik.handleSubmit}>
-    //   <label htmlFor="name">Product :</label>
-    //      <input
-    //       id="name"
-    //       name="name"
-    //       type="text"
-    //       onChange={formik.handleChange}
-    //       value={formik.values.name}
-    //     />
-    //     <label htmlFor="regular_price">Price :</label>
-    //     <input
-    //       id="regular_price"
-    //       name="regular_price"
-    //       onChange={formik.handleChange}
-    //       value={formik.values.regular_price}
-    //     />
-    //     <label htmlFor="images">Image Url :</label>
-    //     <input
-    //       id="images"
-    //       name="images"
-    //       type="text"
-    //       onChange={formik.handleChange}
-    //       value={formik.values.images}
-    //     />
-    //     <button type="submit">Submit</button>
-    //    </form>
+    </>
+    //     // {/*<Form.Group>*/}
+    //     // {/*  <Button type='submit'>Submit</Button>*/}
+    //     // {/*  <Message*/}
+    //     // {/*    success*/}
+    //     // {/*    header='Form Completed'*/}
+    //     // {/*    content="You're all signed up for the newsletter"*/}
+    //     // {/*  />*/}
+    //     // {/*  /!*<Message icon>*!/*/}
+    //     // {/*  /!*  {console.log(props.loading)}*!/*/}
+    //     // {/*  /!*  {props.loading ? <Icon name='circle notched' loading/>:<div></div>}*!/*/}
+    //     //
+    //     // {/*  /!*</Message>*!/*/}
+    //     // {/*</Form.Group>*/}
+    // {/*// <form onSubmit={formik.handleSubmit}>*/}
+    // {/*//   <label htmlFor="name">Product :</label>*/}
+    // {/*//      <input*/}
+    // {/*//       id="name"*/}
+    // //       name="name"
+    // //       type="text"
+    // //       onChange={formik.handleChange}
+    // //       value={formik.values.name}
+    // //     />
+    // //     <label htmlFor="regular_price">Price :</label>
+    // //     <input
+    // //       id="regular_price"
+    // //       name="regular_price"
+    // //       onChange={formik.handleChange}
+    // //       value={formik.values.regular_price}
+    // //     />
+    // //     <label htmlFor="images">Image Url :</label>
+    // //     <input
+    // //       id="images"
+    // //       name="images"
+    // //       type="text"
+    // //       onChange={formik.handleChange}
+    // //       value={formik.values.images}
+    // //     />
+    // //     <button type="submit">Submit</button>
+    // //    </form>
   )
 }
