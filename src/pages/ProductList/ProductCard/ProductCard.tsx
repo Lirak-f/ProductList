@@ -3,7 +3,18 @@ import { Button, Card, Divider, Image, Placeholder } from "semantic-ui-react"
 import { Spinner } from "reactstrap"
 import { Link } from "react-router-dom"
 
-export const ProductCard = (props:any) => {
+interface Props {
+  key: number
+  id: number,
+  loading: boolean,
+  name: string,
+  price: string,
+  deleteCheck: number,
+  images: string,
+  deleteProduct: () => void
+}
+
+export const ProductCard = (props:Props) => {
   return(
     <Card>
       {props.loading ? (

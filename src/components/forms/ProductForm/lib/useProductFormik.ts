@@ -17,3 +17,5 @@ export const useProductFormik = (opts:any)=>{
     }
   })
 }
+
+export type ProductFormik = ReturnType<typeof useProductFormik>

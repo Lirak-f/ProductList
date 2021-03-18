@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
 import * as API from '../../api/Api'
-import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
+import { Card, Divider } from 'semantic-ui-react'
 import './ProductList.scss';
-import { EditProductForm } from '../EditProduct/EditProductForm';
 import {Spinner} from "reactstrap";
 import {ProductCard} from './ProductCard/ProductCard'
+import { ProductResponse, ProductType } from "../../api/Api"
 
 export const ProductList = () => {
-  const [data, setData] = useState([]);
+
+  const [data, setData] = useState<ProductResponse[]>([]);
   const [loading, setLoading] = useState(false);
-  const [deleteCheck, setDeleteCheck] =useState('');
+  const [deleteCheck, setDeleteCheck] =useState(0);
 
   const arr = Array.from({length:6})
   useEffect(() => {
@@ -21,34 +21,24 @@ export const ProductList = () => {
     try{
     setLoading(true);
     const res = await API.getProducts();
+
     setData(res);
       setLoading(false);
-
     }catch(e){
       console.log("error",e)
     }
 
   }
-  async function deleteProduct(id:any) {
+  async function deleteProduct(id:number) {
     try {
       setDeleteCheck(id);
       await API.deleteProduct(id);
-
-      setData(data.filter((product:any)=>product.id !== id
+      setData(data.filter((product)=>product.id !== id
       ))
 
     }
       catch (e){}
   }
-//   return (<div>
-//     {data?.map((product:any)=>{
-//       <ProductCard
-//         key={product.id}
-//       />
-//     })}
-//   </div>)
-//
-// };
 return (
     <>
       <Divider />
@@ -59,16 +49,16 @@ return (
         />
         : <div></div> }
       <Card.Group doubling itemsPerRow={3} stackable>
-        {data?.map((product:any,index)=>(
+        {data?.map((product)=>(
           <ProductCard
-          key={product.id}
-          id={product.id}
-          loading={loading}
-          name={product.name}
-          price={product.price}
-          deleteCheck={deleteCheck}
-          images={product.images[0]?.src}
-          deleteProduct={()=>deleteProduct(product.id)}
+            key={product.id}
+            id={product.id}
+            loading={loading}
+            name={product.name}
+            price={product.regular_price}
+            deleteCheck={deleteCheck}
+            images={product.images[0]?.src}
+            deleteProduct={()=>deleteProduct(product.id)}
           />
           // <Card key={product.id}>
           //   {loading ? (

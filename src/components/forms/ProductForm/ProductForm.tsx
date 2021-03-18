@@ -1,8 +1,16 @@
 import React from "react";
 import { Button, Form, Message, Segment, Icon, Divider } from "semantic-ui-react"
-import { InputForm } from '../../../components/forms/InputForm/InputForm'
+import { InputForm } from '../../../components/forms/InputForm/InputForm';
+import { ProductFormik } from "./lib/useProductFormik"
 
-export const ProductForm = (props:any) => {
+interface Props {
+  loading: boolean,
+  message: { msg:string, check:boolean },
+  formik: ProductFormik
+}
+
+export const ProductForm = (props:Props) => {
+
   const {formik} = props;
   return (
     <>

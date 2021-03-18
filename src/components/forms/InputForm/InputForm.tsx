@@ -1,11 +1,17 @@
-import React from "react"
+import React, { ChangeEvent } from "react"
 import { Input as ReactstrapInput, InputProps } from "reactstrap"
 import { Button, Form, Message, Segment, Input } from "semantic-ui-react"
 //styles
 
-
-export const InputForm = (props:any) => {
-  const { formik} = props;
+interface InputForm {
+  id: string,
+  name: string,
+  label: string,
+  type: string,
+  onChange:  React.ChangeEventHandler<HTMLInputElement>,
+  value: string
+}
+export const InputForm = (props:InputForm) => {
   return (
     <div>
           <label htmlFor="images">{props.label}</label>
