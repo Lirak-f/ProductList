@@ -27,13 +27,18 @@ export const Add = () => {
           setMessage({msg: 'Product added succesfully!',check: true});
           formikHelpers.resetForm()
         } catch (e) {
+        } finally {
+          setTimeout(()=>{
+            console.log("Timeout")
+            setMessage({
+              msg: "Product added succesfully!" ,
+              check: false
+            })},2000)
+
         }
       },
     });
-  setTimeout(()=>{setMessage({
-    msg: "Product added succesfully!" ,
-    check: false
-  })},7500)
+
 
   return (
     <div className="AddProduct">

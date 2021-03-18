@@ -12,7 +12,6 @@ interface Props {
 export const ProductForm = (props:Props) => {
 
   const {formik} = props;
-  console.log(formik);
   return (
     <>
     <Segment inverted  loading={props.loading}>
