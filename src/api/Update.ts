@@ -10,9 +10,6 @@ interface ProductInput{
   regular_price: string,
   images: ImgObj[]
 }
-interface ProductResponse {
-  data: ProductInput[]
-}
 
 export const update = async (id:number, data:ProductInput) =>
   apiRequest<ProductInput>(

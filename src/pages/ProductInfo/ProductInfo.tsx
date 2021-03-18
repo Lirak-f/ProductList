@@ -3,11 +3,9 @@ import * as API from "../../api/Api";
 import { Image, Item } from 'semantic-ui-react'
 import './ProductInfo.scss';
 import { Spinner } from "reactstrap"
+import { Product } from "../EditProduct/EditProductForm"
 
-interface MatchParams {
-  id: number;
-}
-export const ProductInfo = (props:any) => {
+export const ProductInfo = (props:Product) => {
 
   const productId = props.match.params.id;
   const [loading,setLoading]= useState(false);
@@ -16,7 +14,7 @@ export const ProductInfo = (props:any) => {
     name: '',
     regular_price: '',
     images: '',
-    categories: []
+    categories:''
   });
 
   useEffect(() => {
