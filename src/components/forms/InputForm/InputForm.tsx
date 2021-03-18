@@ -12,7 +12,6 @@ interface InputForm {
   value: string
 }
 export const InputForm = (props:InputForm) => {
-  console.log(props);
   return (
     <div>
           <label htmlFor="images">{props.label}</label>

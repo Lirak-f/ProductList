@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as API from "../../api/Api";
-import { Image, Item } from 'semantic-ui-react'
+import { Divider, Image, Item } from "semantic-ui-react"
 import './ProductInfo.scss';
 import { Spinner } from "reactstrap"
 import { Product } from "../EditProduct/EditProductForm"
